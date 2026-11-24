@@ -13,7 +13,7 @@ A full run (`scripts/run-demo.js`) executes end to end:
 1. Pools start priced exactly at the reference prices.
 2. A separate, clearly-labelled **simulator wallet** trades the pools randomly, pushing prices 5–20% away from reference. (One disclosed simulator wallet generating price drift — not users, not traction.)
 3. The agent detects each divergence and corrects it over several cycles: buying pools that are cheap vs. reference, selling pools that are rich, until divergences fall below its 0.8% threshold or its inventory runs out.
-4. In the recorded run the agent executed **15 real swaps**, corrected AAPL from −5.94% to −0.50% and TSLA from −6.64% to −0.72% divergence, and finished with a positive mock P&L of **+$1,832.01** on an ~$84k mock portfolio — profit taken from the spread, exactly what a real basis-arbitrage agent earns.
+4. In the live Base Sepolia run (2026-11-24, log: `demo-run-live.log` in the submission pack) the agent executed **15 real on-chain swaps**, corrected AAPL from −5.94% to −0.50% and TSLA from −6.64% to −0.72% divergence, and finished with a positive mock P&L of **+$1,832.01** on an ~$84k mock portfolio — profit taken from the spread, exactly what a real basis-arbitrage agent earns. NVDA was pushed +10.49% rich; the agent sold into it until its tNVDA inventory ran out, so that pool's correction was partial (+10.11% at the end) — the inventory cap working as designed, disclosed here rather than hidden.
 
 ## Architecture
 
@@ -52,16 +52,18 @@ npm run simulate         # or: run a simulator burst standalone
 
 Source of truth: `deployments.json` (written by `scripts/deploy.js` on every deploy).
 
-**Verified rehearsal deployment** (local node, chain ID 84532, 2026-11-24 — the exact scripts above, run end-to-end; the Base Sepolia deployment uses the identical flow and this table is replaced with the live addresses + Basescan links when it lands):
+**LIVE deployment — Base Sepolia** (chain ID 84532, deployed 2026-11-24; a rehearsal on a local node with the identical scripts preceded it):
 
-| Contract | Address |
-|---|---|
-| mUSDC (mock) | `0xc0959981a4a3deec48265ac7367c75ca64f4ba16` |
-| tAAPL (mock) | `0x5984e8ceb736b2ea396f1c26d13c0265af2a7318` |
-| tTSLA (mock) | `0xd3e7a58a5f8faac6c37177a5951d2d663e647ef2` |
-| tNVDA (mock) | `0xe9d500cbd5524df7dc6f442ffec7e02411705381` |
-| ReferenceOracle | `0x94324f35b1a6421f2f947c5c1d232338da3d5e1e` |
-| MiniAMM | `0x3c5cd6a853273c77436754bd3b46b98e0d59c9f3` |
+| Contract | Address | Deploy tx |
+|---|---|---|
+| mUSDC (mock) | [`0xdb2ec11357d013d4792e5916bfc9e7b093460c26`](https://sepolia.basescan.org/address/0xdb2ec11357d013d4792e5916bfc9e7b093460c26) | `0xe321270f35eab1d0f233caa5d9c70cce3d1826f2fa20b3e5ff14cb5a403bfb2b` |
+| tAAPL (mock) | [`0xab67a46184d1eb08b0eb38dde9bbafaa27e737ea`](https://sepolia.basescan.org/address/0xab67a46184d1eb08b0eb38dde9bbafaa27e737ea) | `0xf1f4626cfc279e187533ec03f3fb63443dbe7afc39402200f5b918df97a1a5fd` |
+| tTSLA (mock) | [`0x2f16d9b574c0002f06a7d159fb2a543895636efe`](https://sepolia.basescan.org/address/0x2f16d9b574c0002f06a7d159fb2a543895636efe) | `0xeae38047141dbb748cf08c4f9d93d619b971ece7ab8bef0ac711f79a1be371f9` |
+| tNVDA (mock) | [`0x12ab65c96c281a3a089c09dc6e686bf7d101cd22`](https://sepolia.basescan.org/address/0x12ab65c96c281a3a089c09dc6e686bf7d101cd22) | `0x2e089f7560fdd3c28204f2eec5e9e6518e79975d59d95bb1848e6e41fab4c277` |
+| ReferenceOracle | [`0x588e4e75ca32f4d793aec0f0e8b4cb9f086e7fc8`](https://sepolia.basescan.org/address/0x588e4e75ca32f4d793aec0f0e8b4cb9f086e7fc8) | `0x844243297a8e614ca29fb1ccd4cb3ec331882fc30297f9ae4b56457e0b89cd96` |
+| MiniAMM | [`0xc667169c9c7b9e7c5f6a84829aa32df9d28cb299`](https://sepolia.basescan.org/address/0xc667169c9c7b9e7c5f6a84829aa32df9d28cb299) | `0xdbbe9efcef2506f897cd6e559c9074332dc073306dbbec6004ad3e81f82f3b56` |
+
+The live demo run against these contracts (15 agent swaps, blocks 63126846–63127006) is recorded in the submission pack as `demo-run-live.log` with the video cut `stockpilot-demo-live.mp4`.
 
 Wallets: deployer `0xE572DE84e3e5bceD291c55C88C947997cE66D706` · agent `0xD7C2C5a367b1aaFAfDE399538B8347A3af201CF9` · simulator `0x3D9167121882CadDaBBeEAFD75f5af44F628CC4c`.
 
