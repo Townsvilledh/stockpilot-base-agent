@@ -1,0 +1,20 @@
+{
+  "name": "stockpilot-base-agent",
+  "version": "0.1.0",
+  "description": "StockPilot — an autonomous agent that trades mock tokenized-stock pools on Base Sepolia toward real-world reference prices.",
+  "main": "index.js",
+  "scripts": {
+    "compile": "node scripts/compile.js",
+    "deploy": "node scripts/deploy.js",
+    "simulate": "node scripts/simulate.js",
+    "agent": "node agent/agent.js",
+    "demo": "node scripts/run-demo.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "solc": "^0.8.39",
+    "viem": "^2.58.6"
+  }
+}

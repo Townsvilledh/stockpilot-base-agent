@@ -1,0 +1,138 @@
+{
+  "contractName": "ReferenceOracle",
+  "sourceFile": "ReferenceOracle.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "oldKeeper",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newKeeper",
+          "type": "address"
+        }
+      ],
+      "name": "KeeperChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "symbol",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "price1e18",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "PriceSet",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "symbol",
+          "type": "string"
+        }
+      ],
+      "name": "getPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "keeper",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newKeeper",
+          "type": "address"
+        }
+      ],
+      "name": "setKeeper",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "symbol",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "price1e18",
+          "type": "uint256"
+        }
+      ],
+      "name": "setPrice",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "updatedAt",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6080604052348015600e575f5ffd5b505f80546001600160a01b031916331790556105508061002d5f395ff3fe608060405234801561000f575f5ffd5b5060043610610055575f3560e01c806322e011921461005957806330da74f61461006e578063524f3889146100ac578063748747e6146100bf578063aced1661146100d2575b5f5ffd5b61006c610067366004610359565b6100fc565b005b61009961007c3660046103b5565b805160208183018101805160028252928201919093012091525481565b6040519081526020015b60405180910390f35b6100996100ba366004610468565b61020f565b61006c6100cd3660046104a7565b610275565b5f546100e4906001600160a01b031681565b6040516001600160a01b0390911681526020016100a3565b5f546001600160a01b031633146101475760405162461bcd60e51b815260206004820152600a6024820152693737ba1035b2b2b832b960b11b60448201526064015b60405180910390fd5b5f81116101835760405162461bcd60e51b815260206004820152600a6024820152697a65726f20707269636560b01b604482015260640161013e565b80600184846040516101969291906104cd565b90815260200160405180910390208190555042600284846040516101bb9291906104cd565b9081526020016040518091039020819055507fb876955888c9add29a8d5cb5efe9c6290e1b7ca384f7a10c55914da901674df38383834260405161020294939291906104dc565b60405180910390a1505050565b5f5f600184846040516102239291906104cd565b90815260200160405180910390205490505f811161026e5760405162461bcd60e51b81526020600482015260086024820152676e6f20707269636560c01b604482015260640161013e565b9392505050565b5f546001600160a01b031633146102bb5760405162461bcd60e51b815260206004820152600a6024820152693737ba1035b2b2b832b960b11b604482015260640161013e565b5f80546040516001600160a01b03808516939216917f068b48a2fe7f498b57ff6da64f075ae658fde8d77124b092e62b3dc58d91ce3591a35f80546001600160a01b0319166001600160a01b0392909216919091179055565b5f5f83601f840112610324575f5ffd5b50813567ffffffffffffffff81111561033b575f5ffd5b602083019150836020828501011115610352575f5ffd5b9250929050565b5f5f5f6040848603121561036b575f5ffd5b833567ffffffffffffffff811115610381575f5ffd5b61038d86828701610314565b909790965060209590950135949350505050565b634e487b7160e01b5f52604160045260245ffd5b5f602082840312156103c5575f5ffd5b813567ffffffffffffffff8111156103db575f5ffd5b8201601f810184136103eb575f5ffd5b803567ffffffffffffffff811115610405576104056103a1565b604051601f8201601f19908116603f0116810167ffffffffffffffff81118282101715610434576104346103a1565b60405281815282820160200186101561044b575f5ffd5b816020840160208301375f91810160200191909152949350505050565b5f5f60208385031215610479575f5ffd5b823567ffffffffffffffff81111561048f575f5ffd5b61049b85828601610314565b90969095509350505050565b5f602082840312156104b7575f5ffd5b81356001600160a01b038116811461026e575f5ffd5b818382375f9101908152919050565b60608152836060820152838560808301375f608085830101525f6080601f19601f87011683010190508360208301528260408301529594505050505056fea264697066735822122094e5cd49c03d88d8898bd348eca7bd3846889bbb1d0a5425f273c9deea8b78a864736f6c63430008270033"
+}
